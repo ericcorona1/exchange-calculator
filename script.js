@@ -18,7 +18,9 @@ function calculate() {
             const rate = data.rates[currency_two];
 
             //console.log(rate);
-            rateEl.innerText = `1 ${currency_one} = ${currency_two}` 
+            rateEl.innerText = `1 ${currency_one} = ${currency_two}`;
+
+            amountEl_two = (amountEl_one.value * rate).toFixed(2);
         })
 }
 
@@ -27,5 +29,12 @@ currencyEl_one.addEventListener('change', calculate);
 amountEl_one.addEventListener('input', calculate);
 currencyEl_two.addEventListener('change', calculate);
 amountEl_two.addEventListener('input', calculate);
+
+swap.addEventListener('click', () => {
+    const temp = currencyEl_one.value;
+    currencyEl_one.value = currencyEl_two.value;
+    currencyEl_two.value = temp;
+    calculate();
+})
 
 calculate();
